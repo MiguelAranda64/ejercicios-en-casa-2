@@ -1,0 +1,20 @@
+.frontal{
+    width: 100%;
+ margin: auto;
+
+}
+
+
+.partes :hover{
+fill: #DF4141;
+}
+
+
+.cotainer {
+    padding: 0 0 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  

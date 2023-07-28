@@ -1,0 +1,222 @@
+{
+    "exercises": [
+      {
+        "bodyPart": "Antebrazos",
+        "routine": [
+          {
+            "name": "Chin Ups",
+            "difficulty": "intermedio",
+            "steps": [
+              "Grab the bar shoulder width apart with a supinated grip (palms facing you)",
+              "With your body hanging and arms fully extended, pull yourself up until your chin is past the bar.",
+              "Slowly return to starting position. Repeat."
+            ]
+          },
+          {
+            "name": "Dumbbell Wrist Curl",
+            "difficulty": "Principiante",
+            "steps": [
+              "Grip the dumbbell with your palm facing upwards with your forearm rested against the bench.",
+              "Slowly curl your wrist upwards in a semicircular motion.",
+              "Return to starting position and repeat."
+            ]
+          },
+          {
+            "name": "Dumbbell Row Unilateral",
+            "difficulty": "Principiante",
+            "steps": [
+              "Brace your off arm against something stable (bench, box). Stagger your stance so your leg on the side of your working arm is back.",
+              "Try to get your torso to parallel with the ground. That will extend your range of motion.",
+              "Let your arm hang freely and then pull your elbow back. Imagine you've got a tennis ball in your armpit and squeeze it each rep."
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Biceps",
+        "routine": [
+          {
+            "name": "Barbell Curl",
+            "difficulty": "Principiante",
+            "steps": [
+              "While holding the upper arms stationary, curl the weights forward while contracting the biceps as you breathe out.",
+              "Continue the movement until your biceps are fully contracted and the bar is at shoulder level.",
+              "Hold the contracted position for a second and squeeze the biceps hard.",
+              "Slowly bring the weight back down to the starting position."
+            ]
+          },
+          {
+            "name": "Chin Ups",
+            "difficulty": "intermedio",
+            "steps": [
+              "Grab the bar shoulder width apart with a supinated grip (palms facing you)",
+              "With your body hanging and arms fully extended, pull yourself up until your chin is past the bar.",
+              "Slowly return to starting position. Repeat."
+            ]
+          },
+          {
+            "name": "Dumbbell Hammer Curl",
+            "difficulty": "Principiante",
+            "steps": [
+              "Hold the dumbbells with a neutral grip (thumbs facing the ceiling).",
+              "Slowly lift the dumbbell up to chest height",
+              "Return to starting position and repeat."
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Hombros",
+        "routine": [
+          {
+            "name": "Barbell Overhead Press",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Dumbbell Seated Overhead Press",
+            "difficulty": "principiante",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Cable Lateral Raise",
+            "difficulty": "experto",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Trapecios",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Trapecios",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Pecho",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Pecho",
+            "difficulty": "principiante",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Ejercicio 2 de Pecho",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Ejercicio 3 de Pecho",
+            "difficulty": "experto",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Abdomen",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Abdomen",
+            "difficulty": "principiante",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Ejercicio 2 de Abdomen",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Oblicuos",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Oblicuos",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Quadriceps",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Quadriceps",
+            "difficulty": "principiante",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          },
+          {
+            "name": "Ejercicio 2 de Quadriceps",
+            "difficulty": "intermedio",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Pantorillas",
+        "routine": [
+          {
+            "name": "Ejercicio 1 de Pantorillas",
+            "difficulty": "principiante",
+            "steps": [
+              "Step 1",
+              "Step 2",
+              "Step 3"
+            ]
+          }
+        ]
+      }
+    ]
+}
+  

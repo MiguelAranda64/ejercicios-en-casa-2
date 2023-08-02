@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutinas</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h2>Rutinas:</h2>
+    <ul>
+        <!-- Aquí se mostrarán las rutinas correspondientes a la parte del cuerpo seleccionada -->
+        <% routine.routine.forEach(exercise => { %>
+            <li>
+                <h3><%= exercise.name %></h3>
+                <p>Dificultad: <%= exercise.difficulty %></p>
+                <ol>
+                    <% exercise.steps.forEach(step => { %>
+                        <li><%= step %></li>
+                    <% }); %>
+                </ol>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

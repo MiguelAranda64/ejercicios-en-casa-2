@@ -8,14 +8,10 @@ const fs = require('fs'); // Módulo File System de Node.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'public'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//conexion a mongodb
 const mongo_uri = 'mongodb://127.0.0.1:27017/SmartGym';
 
 mongoose.connect(mongo_uri).then(() => {
@@ -25,10 +21,9 @@ mongoose.connect(mongo_uri).then(() => {
     console.error('Error connecting to MongoDB:', err);
 });
 
-//registro de usuario
 app.post('/register', async (req, res) => {
-    const { username, password, email } = req.body;
-    const user = new User({ username, password, email });
+    const { username, password } = req.body;
+    const user = new User({ username, password });
 
     try {
         await user.save();
@@ -39,48 +34,35 @@ app.post('/register', async (req, res) => {
     }
 });
 
-//login de usuario
-app.post('/auth', (req, res) => {
-    const { username, password } = req.body;
-    
-    // Verificar si el usuario existe
-    User.findOne({ username })
-        .exec()
-        .then(user => {
-            if (!user) {
-                res.status(500).send('EL USUARIO NO EXISTE');
-            } else {
-                // Verificar si la contraseña es correcta
-                user.isCorrectPassword(password, (err, result) => {
-                    if (err) {
-                        res.status(500).send('ERROR AL AUTENTICAR');
-                    } else if (result) {
-                        // Verificar si es un usuario administrador
-                        if (username === 'Mario') {
-                            // Si el usuario es 'Mario', redirigir a la página CRUD
-                            res.redirect('/admincrud');
-                        } else {
-                            // Si no, redirigir a la página de rutinas
-                            res.redirect('/routines');
-                        }
-                    } else {
-                        res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA');
-                    }
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send('ERROR AL AUTENTICAR AL USUARIO');
-        });
+app.post('/auth', (req, res) =>{
+    const {username, password} = req.body;
+
+    User.findOne({username})
+    .exec()
+    .then(user => {
+        if (!user) {
+            res.status(500).send('EL USUARIO NO EXISTE');
+        } else {
+            user.isCorrectPassword(password, (err, result) => {
+                if (err) {
+                    res.status(500).send('ERROR AL AUTENTICAR');
+                } else if (result) {
+                    res.status(200).send('USUARIO AUTENTICADO CORRECTAMENTE');
+                } else {
+                    res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA');
+                }
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send('ERROR AL AUTENTICAR AL USUARIO');
+    });
 });
 
-
-//obtener ruta para inicio
 app.get('/inicio', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'inicio.html')); // Cambio aquí para enviar el archivo "inicio.html"
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-//obtener ruta para routines (pagina de rutinas de ejercicio)
 app.get('/routines', (req, res) => {
     // Leer el archivo exercises.json y parsear los datos
     fs.readFile(path.join(__dirname, 'exercises.json'), 'utf8', (err, data) => {

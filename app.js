@@ -25,6 +25,12 @@ mongoose.connect(mongo_uri).then(() => {
     console.error('Error connecting to MongoDB:', err);
 });
 
+
+
+app.get('/admincrud', (req, res) => {
+    res.send('Página de administración CRUD');
+});
+
 //registro de usuario
 app.post('/register', async (req, res) => {
     const { username, password, email } = req.body;

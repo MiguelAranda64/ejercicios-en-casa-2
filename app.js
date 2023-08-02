@@ -23,6 +23,7 @@ mongoose.connect(mongo_uri).then(() => {
 })
 .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
+
 });
 
 
@@ -79,6 +80,59 @@ app.post('/auth', (req, res) => {
             res.status(500).send('ERROR AL AUTENTICAR AL USUARIO');
         });
 });
+
+
+
+
+//registro de usuario
+app.post('/register', async (req, res) => {
+    const { username, password, email } = req.body;
+    const user = new User({ username, password, email }); // Asegúrate de incluir 'email'
+
+    try {
+        await user.save();
+        res.status(200).send('USUARIO REGISTRADO');
+    } catch (err) {
+        console.error('Error registering user:', err);
+        res.status(500).send('ERROR AL REGISTRAR AL USUARIO');
+    }
+});
+
+//login de usuario
+app.post('/auth', (req, res) => {
+    const { username, password } = req.body;
+    
+    // Verificar si el usuario existe
+    User.findOne({ username })
+        .exec()
+        .then(user => {
+            if (!user) {
+                res.status(500).send('EL USUARIO NO EXISTE');
+            } else {
+                // Verificar si la contraseña es correcta
+                user.isCorrectPassword(password, (err, result) => {
+                    if (err) {
+                        res.status(500).send('ERROR AL AUTENTICAR');
+                    } else if (result) {
+                        // Verificar si es un usuario administrador
+                        if (username === 'Mario') {
+                            // Si el usuario es 'Mario', redirigir a la página CRUD
+                            res.redirect('/admincrud');
+                        } else {
+                            // Si no, redirigir a la página de rutinas
+                            res.redirect('/inicio');
+                        }
+                    } else {
+                        res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA');
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send('ERROR AL AUTENTICAR AL USUARIO');
+        });
+});
+
 
 
 //obtener ruta para inicio

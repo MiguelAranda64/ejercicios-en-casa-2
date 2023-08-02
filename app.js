@@ -26,8 +26,6 @@ mongoose.connect(mongo_uri).then(() => {
 
 });
 
-
-
 app.get('/admincrud', (req, res) => {
     res.send('Página de administración CRUD');
 });

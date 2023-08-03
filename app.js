@@ -26,59 +26,28 @@ mongoose.connect(mongo_uri).then(() => {
 
 });
 
-app.get('/admincrud', (req, res) => {
-    res.send('Página de administración CRUD');
-});
-
-//registro de usuario
-app.post('/register', async (req, res) => {
-    const { username, password, email } = req.body;
-    const user = new User({ username, password, email }); // Asegúrate de incluir 'email'
-
+app.get('/admincrud', async (req, res) => {
     try {
-        await user.save();
-        res.status(200).send('USUARIO REGISTRADO');
-    } catch (err) {
-        console.error('Error registering user:', err);
-        res.status(500).send('ERROR AL REGISTRAR AL USUARIO');
+        const users = await User.find();
+        res.render('adminCrud', { users });
+    } catch (error) {
+        console.error('Error obteniendo usuarios:', error);
+        res.status(500).send('Error obteniendo usuarios');
     }
 });
 
-//login de usuario
-app.post('/auth', (req, res) => {
-    const { username, password } = req.body;
-    
-    // Verificar si el usuario existe
-    User.findOne({ username })
-        .exec()
-        .then(user => {
-            if (!user) {
-                res.status(500).send('EL USUARIO NO EXISTE');
-            } else {
-                // Verificar si la contraseña es correcta
-                user.isCorrectPassword(password, (err, result) => {
-                    if (err) {
-                        res.status(500).send('ERROR AL AUTENTICAR');
-                    } else if (result) {
-                        // Verificar si es un usuario administrador
-                        if (username === 'Mario') {
-                            // Si el usuario es 'Mario', redirigir a la página CRUD
-                            res.redirect('/admincrud');
-                        } else {
-                            // Si no, redirigir a la página de rutinas
-                            res.redirect('/inicio');
-                        }
-                    } else {
-                        res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA');
-                    }
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send('ERROR AL AUTENTICAR AL USUARIO');
-        });
+// Ruta para la inserción de usuario
+app.post('/admincrud/insert', async (req, res) => {
+    try {
+        const { username, password, email } = req.body;
+        const newUser = new User({ username, password, email });
+        await newUser.save();
+        res.redirect('/admincrud');
+    } catch (error) {
+        console.error('Error al insertar usuario:', error);
+        res.status(500).send('Error al insertar usuario: ' + error.message); // Agrega el mensaje de error al cuerpo de la respuesta
+    }
 });
-
 
 
 

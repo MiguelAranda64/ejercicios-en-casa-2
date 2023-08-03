@@ -368,7 +368,7 @@
         ]
       },
       {
-        "bodyPart": "Antebrazo",
+        "bodyPart": "Antebrazos",
         "routine": [
           {
             "name": "Elevaciones de pantorrillas sentado en máquina",
@@ -393,6 +393,75 @@
       },
       {
         "bodyPart": "Tricep",
+        "routine": [
+          {
+            "name": "Elevaciones de pantorrillas sentado en máquina",
+            "difficulty": "principiante",
+            "steps": [
+              "Póngase cómodo en la máquina, luego coloque la parte inferior de los muslos debajo de la palanca acolchada. Coloque los dedos de los pies y las puntas de los pies sobre los soportes para los pies.",
+              "Evite que el peso se deslice hacia adelante agarrando las manijas y suelte la barra de seguridad. Baje el peso hasta que sus pantorrillas estén extendidas.",
+              "Empuje los talones hacia arriba para levantar la palanca acolchada y mantener la posición contraída, luego baje lentamente hasta la posición inicial. Repetir."
+            ]
+          },
+          {
+            "name": "Elevaciones de pantorrillas con barra",
+            "difficulty": "intermedio",
+            "steps": [
+              "Coloca la barra en tu espalda",
+              "Empezar con los pies apoyados en el suelo",
+              "Extienda los talones hacia arriba mientras mantiene las rodillas inmóviles y haga una pausa en la posición contraída.",
+              "Regresa lentamente a la posición inicial."
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "isquiotibiales",
+        "routine": [
+          {
+            "name": "Peso muerto",
+            "difficulty": "intermedio",
+            "steps": [
+              "Párese con una barra en las espinillas con los pies separados al ancho de los hombros.",
+              "Inclínese hacia adelante a la altura de las caderas y mantenga las rodillas lo más extendidas posible.",
+              "Toma la barra y luego extiende las caderas mientras mantienes la espalda recta.",
+              "Desde la posición de pie, baje el peso de manera controlada.",
+              "Puede bajar el peso al piso o antes de tocar el piso, dependiendo de su movilidad."
+            ]
+          },
+          {
+            "name": "Levantamiento de gluteos",
+            "difficulty": "intermedio",
+            "steps": [
+              "Colóquese en una máquina de levantamiento de glúteos o encuentre un sustituto adecuado como una pelota de estabilidad o un banco.",
+              "Ajuste el equipo para que se ajuste a su cuerpo colocando el reposapiés a una altura adecuada y asegurándose de que sus pies estén bien sujetos.",
+              "Comience el movimiento bajando lentamente la parte superior del cuerpo hacia el suelo mientras mantiene el torso y las piernas alineados.",
+              "Una vez que llegue al punto más bajo donde su cuerpo esté paralelo al suelo o tan lejos como pueda llegar cómodamente, haga una breve pausa.",
+              "Involucra tus glúteos e isquiotibiales nuevamente mientras te empujas hacia atrás hasta la posición inicial, usando la fuerza de tus músculos de la cadena posterior."
+            ]
+          },
+          {
+            "name": "Curl de isquiotibiales en máquina",
+            "difficulty": "principiante",
+            "steps": [
+              "Acuéstese en la máquina, colocando las piernas debajo de la palanca acolchada. Coloque las piernas de modo que la palanca acolchada quede debajo de los músculos de las pantorrillas.",
+              "Apóyese agarrando las manijas laterales de la máquina y levante lentamente el peso con las piernas, con los dedos de los pies rectos.",
+              "Haga una pausa en el ápice del movimiento, luego regrese lentamente a la posición inicial."
+            ]
+          },
+          {
+            "name": "Good morning con barra baja",
+            "difficulty": "experto",
+            "steps": [
+              "Coloque la barra entre los trapecios y los deltoides posteriores. Tire de los omóplatos hacia atrás para darle a la barra un estante para sentarse.",
+              "Empuja las caderas hacia atrás hasta que sientas un estiramiento en los isquiotibiales. Esto significa que se está acercando al final de su rango de movimiento sin redondear la columna.",
+              "Cuando sienta el estiramiento, empuje las caderas hacia adelante hasta que esté de pie."
+            ]
+          }
+        ]
+      },
+      {
+        "bodyPart": "Pantorrilla",
         "routine": [
           {
             "name": "Elevaciones de pantorrillas sentado en máquina",

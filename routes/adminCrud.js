@@ -1,58 +1,56 @@
+//codigo sin usar
+
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user'); // Asegúrate de tener el modelo User configurado
 
-const adminCrudRouter = require('./routes/adminCrud'); // Ruta a tu archivo adminCrud.js
-app.use('/', adminCrudRouter); // Usar la ruta en la aplicación
-
-
-router.get('/admincrud', async (req, res) => {
+// Ruta para obtener todos los usuarios
+router.get('/api/users', async (req, res) => {
     try {
-        const users = await User.find(); // Obtener todos los usuarios de MongoDB
-        res.render('adminCrud', { users });
+        const users = await User.find();
+        res.json(users);
     } catch (error) {
         console.error('Error obteniendo usuarios:', error);
-        res.status(500).send('Error obteniendo usuarios');
+        res.status(500).json({ error: 'Error obteniendo usuarios' });
     }
 });
 
-// Insertar nuevo usuario
-router.post('/admincrud', async (req, res) => {
+// Ruta para crear un nuevo usuario
+router.post('/api/users', async (req, res) => {
     try {
         const { username, password, email } = req.body;
         const newUser = new User({ username, password, email });
         await newUser.save();
-        res.redirect('/admincrud'); // Redirige de nuevo a la página después de la inserción
+        res.json(newUser);
     } catch (error) {
         console.error('Error al insertar usuario:', error);
-        res.status(500).send('Error al insertar usuario');
+        res.status(500).json({ error: 'Error al insertar usuario' });
     }
 });
 
-// Actualizar usuario
-router.put('/admincrud/:userId', async (req, res) => {
+// Ruta para actualizar un usuario por su ID
+router.put('/api/users/:id', async (req, res) => {
     try {
-        const { userId } = req.params;
-        const { username, password, email } = req.body;
-        await User.findByIdAndUpdate(userId, { username, password, email });
-        res.redirect('/admincrud'); // Redirige de nuevo a la página después de la actualización
+        const { id } = req.params;
+        const { newUsername, newEmail } = req.body;
+        await User.findByIdAndUpdate(id, { username: newUsername, email: newEmail });
+        res.json({ message: 'Usuario actualizado correctamente' });
     } catch (error) {
         console.error('Error al actualizar usuario:', error);
-        res.status(500).send('Error al actualizar usuario');
+        res.status(500).json({ error: 'Error al actualizar usuario' });
     }
 });
 
-// Eliminar usuario
-router.delete('/admincrud/:userId', async (req, res) => {
+// Ruta para eliminar un usuario por su ID
+router.delete('/api/users/:id', async (req, res) => {
     try {
-        const { userId } = req.params;
-        await User.findByIdAndDelete(userId);
-        res.redirect('/admincrud'); // Redirige de nuevo a la página después de la eliminación
+        const { id } = req.params;
+        await User.findByIdAndDelete(id);
+        res.json({ message: 'Usuario eliminado correctamente' });
     } catch (error) {
         console.error('Error al eliminar usuario:', error);
-        res.status(500).send('Error al eliminar usuario');
+        res.status(500).json({ error: 'Error al eliminar usuario' });
     }
 });
-
 
 module.exports = router;

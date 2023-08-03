@@ -1,0 +1,158 @@
+<!-- codigo sin usar -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin CRUD</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <h1>User CRUD</h1>
+
+    <button onclick="mostrarModalInsertar()">New User</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user._id %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <button onclick="mostrarModalActualizar('<%= user._id %>')">Update</button>
+                        <button onclick="eliminarUsuario('<%= user._id %>')">Delete</button>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Modal para Inserción -->
+
+    <div id="modalInsertar">
+        <h2>Insert User</h2>
+        <form id="insertForm" action="http://localhost:3000/admincrud/insert" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+    
+            <button type="submit">Insert</button>
+        </form>
+    </div>
+    
+
+
+    <!-- Modal para Actualización -->
+<div id="modalActualizar">
+    <h2>Update User</h2>
+    <form id="updateForm" method="POST">
+        <input type="hidden" id="userIdActualizar" name="userIdActualizar">
+
+        <label for="newUsername">New Username:</label>
+        <input type="text" id="newUsername" name="newUsername" required><br>
+
+        <label for="newEmail">New Email:</label>
+        <input type="email" id="newEmail" name="newEmail" required><br>
+
+        <button type="button" onclick="actualizarUsuario()">Update</button>
+    </form>
+</div>
+
+    <!-- Modal para Eliminación -->
+    <div id="modalEliminar">
+        <h2>Delete User</h2>
+        <form id="deleteForm" method="POST">
+            <input type="hidden" id="userIdEliminar" name="userIdEliminar">
+
+            <p>Are you sure you want to delete this user?</p>
+            <button type="button" onclick="eliminarUsuario()">Delete</button>
+        </form>
+    </div>
+
+    <script>
+       function mostrarModalInsertar() {
+            var modalInsertar = document.getElementById('modalInsertar');
+            modalInsertar.style.display = 'block';
+        }
+
+        // Dentro de la función mostrarModalActualizar(userId)
+        function mostrarModalActualizar(userId) {
+            var modalActualizar = document.getElementById('modalActualizar');
+            modalActualizar.style.display = 'block';
+
+            document.getElementById('userIdActualizar').value = userId;
+            userIdToUpdate = userId; // Declarar userIdToUpdate en el ámbito global
+        }
+
+        // Dentro de la función mostrarModalEliminar(userId)
+        function mostrarModalEliminar(userId) {
+            var modalEliminar = document.getElementById('modalEliminar');
+            modalEliminar.style.display = 'block';
+
+            document.getElementById('userIdEliminar').value = userId;
+        }
+
+        // Enviar formulario de actualización
+        function actualizarUsuario() {
+            const newUsername = document.getElementById('newUsername').value;
+            const newEmail = document.getElementById('newEmail').value;
+
+            const updateForm = document.getElementById('updateForm');
+            updateForm.action = `/api/users/${userIdToUpdate}`;
+            updateForm.method = 'PUT';
+            updateForm.submit();
+        }
+
+        // Enviar formulario de eliminación
+        function eliminarUsuario() {
+            const deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = `/api/users/${userIdToUpdate}`;
+            deleteForm.method = 'DELETE';
+            deleteForm.submit();
+        }
+
+// ... (código previo)
+
+const insertForm = document.getElementById('insertForm');
+
+insertForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    try {
+        const formData = new FormData(insertForm);
+        const response = await fetch('http://localhost:9000/admincrud/insert', { // Cambio aquí
+            method: 'POST',
+            body: formData
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            console.log(responseData.message); // Mensaje del servidor
+            window.location.reload(); // Recargar la página después de la inserción exitosa
+        } else {
+            const errorData = await response.json();
+            console.error('Error al insertar usuario:', errorData.error);
+            // Mostrar el error en la interfaz de usuario o en la consola
+        }
+    } catch (error) {
+        console.error('Error en la solicitud:', error);
+    }
+});
+
+
+
+    </script>
+</body>
+</html>

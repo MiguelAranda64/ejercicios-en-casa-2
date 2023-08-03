@@ -12,14 +12,6 @@ const port = 9000;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Sirve archivos estáticos desde la raíz del proyecto
-app.use(express.static(path.join(__dirname)));
-
-// Define la ruta para acceder al archivo adminCrud.js
-app.get('/admincrud', (req, res) => {
-    res.sendFile(path.join(__dirname, 'models', 'adminCrud.js'));
-});
-
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/SmartGym', {
   useNewUrlParser: true,
@@ -41,14 +33,16 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-app.post('/api/users', async (req, res) => {
-  try {
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: 'Error creating user' });
-  }
+app.post('/admincrud/insert', async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const newUser = new User({ username, email, password });
+        await newUser.save();
+        res.json({ message: 'User inserted successfully' }); // Cambio aquí
+    } catch (error) {
+        console.error('Error al insertar usuario:', error);
+        res.status(500).json({ error: 'Error al insertar usuario' }); // Cambio aquí
+    }
 });
 
 app.put('/api/users/:id', async (req, res) => {
